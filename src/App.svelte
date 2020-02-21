@@ -1,6 +1,10 @@
 <script>
+import ContactCard from './ContactCard.svelte';
 	export let name;
 	let age = 24;
+	let title = '';
+	let description = '';
+	let image = ''
 	$: upperCaseName = name.toUpperCase();
 
 	function changeAge() {
@@ -27,4 +31,9 @@
 <!-- <input type="text" value="{upperCaseName}" on:input='{changeName}' /> -->
 
 <!-- SHortcut to above approach -->
-<input type="text" bind:value="{name}">
+<input placeholder="name"  type="text" bind:value="{name}">
+<input placeholder="title" type="text" bind:value="{title}">
+<input placeholder="iamge" type="text" bind:value="{image}">
+<textarea placeholder="description" name="" id="" cols="20" rows="3" bind:value={description}></textarea>
+
+<ContactCard userName={name} jobTitle={title} description={description} userImage={image}/>
