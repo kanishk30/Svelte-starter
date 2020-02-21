@@ -1,39 +1,36 @@
 <script>
-import ContactCard from './ContactCard.svelte';
-	export let name;
-	let age = 24;
-	let title = '';
-	let description = '';
-	let image = ''
-	$: upperCaseName = name.toUpperCase();
+  import ContactCard from "./ContactCard.svelte";
 
-	function changeAge() {
-		age = age + 1;
-	}
-
-	function changeName(e) {
-		name = e.target.value
-	}
-
+  let name = "Max";
+  let title = "";
+  let image = "";
+  let description = "";
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
+  #form {
+    width: 30rem;
+    max-width: 100%;
+  }
 </style>
 
-<h1>Hello {upperCaseName}!</h1>
-<h2>My age is {age}</h2>
-<button on:click='{changeAge}'>Change Age</button>
-<!-- <button on:dblclick='{changeName}'>Change Name by Double Click</button> -->
+<div id="form">
+  <div class="form-control">
+    <label for="userName">User Name</label>
+    <input type="text" bind:value={name} id="userName" />
+  </div>
+  <div class="form-control">
+    <label for="jobTitle">Job Title</label>
+    <input type="text" bind:value={title} id="jobTitle" />
+  </div>
+  <div class="form-control">
+    <label for="image">Image URL</label>
+    <input type="text" bind:value={image} id="image" />
+  </div>
+  <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea rows="3" bind:value={description} id="desc" />
+  </div>
+</div>
 
-<!-- <input type="text" value="{upperCaseName}" on:input='{changeName}' /> -->
-
-<!-- SHortcut to above approach -->
-<input placeholder="name"  type="text" bind:value="{name}">
-<input placeholder="title" type="text" bind:value="{title}">
-<input placeholder="iamge" type="text" bind:value="{image}">
-<textarea placeholder="description" name="" id="" cols="20" rows="3" bind:value={description}></textarea>
-
-<ContactCard userName={name} jobTitle={title} description={description} userImage={image}/>
+<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
